@@ -15,23 +15,23 @@ import {
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 
 export default function App() {
-  useEffect(() => {
-    const ros = new ROSLIB.Ros({
-      url: 'ws://your_rosbridge_server_ip:your_rosbridge_server_port',
-    });
-    const gpsListener = new ROSLIB.Topic({
-      ros,
-      name: 'gps_data', 
-      messageType: 'your_message_type',
-    });
+  // useEffect(() => {
+  //   const ros = new ROSLIB.Ros({
+  //     url: 'ws://your_rosbridge_server_ip:your_rosbridge_server_port',
+  //   });
+  //   const gpsListener = new ROSLIB.Topic({
+  //     ros,
+  //     name: 'gps_data', 
+  //     messageType: 'your_message_type',
+  //   });
 
-    gpsListener.subscribe((message) => {
-      console.log('Received GPS data:', message);
-    });
-    return () => {
-      gpsListener.unsubscribe();
-    };
-  }, []);
+  //   gpsListener.subscribe((message) => {
+  //     console.log('Received GPS data:', message);
+  //   });
+  //   return () => {
+  //     gpsListener.unsubscribe();
+  //   };
+  // }, []);
   const [data, setData] = useState([
     { x: 28.632430, y: 77.218790 },
     { x: 28.632430, y: 77.218790 },
@@ -39,8 +39,8 @@ export default function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       const newData = [...data];
-      newData[1].x += Math.random() < 0.5 ? -0.00001 : 0.00001;
-      newData[1].y += Math.random() < 0.5 ? -0.00001 : 0.00001;
+      newData[1].x += Math.random() < 0.5 ? -0.000001 : 0.000001;
+      newData[1].y += Math.random() < 0.5 ? -0.000001 : 0.000001;
       setData(newData);
       console.log(newData);
     }, 1000);
